@@ -13,10 +13,10 @@ if (isset($_GET["adm_no_new_record"])) {
 	$ailment = mysqli_escape_string($con, $_GET["ailment"]);
 	$medication = mysqli_escape_string($con, $_GET["medication"]);
 	$comment = mysqli_escape_string($con, $_GET["comment"]);
-	(isset($_GET["toOtherHealthFacility"])) ? $toOtherHealthFacility = $_GET["toOtherHealthFacility"] : $toOtherHealthFacility = 0;
-	(isset($_GET["fromOtherHealthFacility"])) ? $fromOtherHealthFacility = $_GET["fromOtherHealthFacility"] : $fromOtherHealthFacility = 0;
-	(isset($_GET["toCommunityUnit"])) ? $toCommunityUnit = $_GET["toCommunityUnit"] : $toCommunityUnit = 0;
-	(isset($_GET["fromCommunityUnit"])) ? $fromCommunityUnit = $_GET["fromCommunityUnit"] : $fromCommunityUnit = 0;
+	(isset($_GET["toOtherHealthFacility"])) ? $toOtherHealthFacility = 1 : $toOtherHealthFacility = 0;
+	(isset($_GET["fromOtherHealthFacility"])) ? $fromOtherHealthFacility = 1 : $fromOtherHealthFacility = 0;
+	(isset($_GET["toCommunityUnit"])) ? $toCommunityUnit = 1 : $toCommunityUnit = 0;
+	(isset($_GET["fromCommunityUnit"])) ? $fromCommunityUnit = 1 : $fromCommunityUnit = 0;
 	#Update DB
 	$functions->update_new_record($_SESSION["adm_no"], $temp, $ailment, $medication, $comment, $toOtherHealthFacility, $fromOtherHealthFacility, $toCommunityUnit, $fromCommunityUnit);
 
@@ -61,8 +61,7 @@ if (isset($_GET["adm_no_new_record"])) {
 
 
 	#Clean records
-	$functions->yesterday();
-	$functions->last_month();
+	$functions->utlimate_fix();
 
 	#Redirect back to `index.php`
 	header("Location:index");
