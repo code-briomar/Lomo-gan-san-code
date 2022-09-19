@@ -296,8 +296,11 @@ class DB
 		while ($row = $result->fetch_assoc()) {
 			$noToOtherHealthFacility = $row["countToOtherHealthFacility"];
 		}
-		mysqli_query($con2, "UPDATE `summary_table` SET `$day`='$noToOtherHealthFacility' WHERE disease_name='<b>Referrals to other health facility</b>'");
-		#echo $noToOtherHealthFacility;
+		if (mysqli_query($con2, "UPDATE `summary_table` SET `$day`='$noToOtherHealthFacility' WHERE disease_name='<b>Referrals to other health facility</b>'")) {
+			echo "TO OTHER HEALTH FACILITY : " . $noToOtherHealthFacility;
+		} else {
+			echo "TO OTHER HEALTH FACILITY : FAILED";
+		}
 	}
 	public function from_other_health_facility()
 	{
@@ -307,8 +310,11 @@ class DB
 		while ($row = $result->fetch_assoc()) {
 			$noFromOtherHealthFacility = $row["countFromOtherHealthFacility"];
 		}
-		mysqli_query($con2, "UPDATE `summary_table` SET `$day`='$noFromOtherHealthFacility' WHERE disease_name='<b>Referrals from other health facility</b>'");
-		echo $noFromOtherHealthFacility;
+		if (mysqli_query($con2, "UPDATE `summary_table` SET `$day`='$noFromOtherHealthFacility' WHERE disease_name='<b>Referrals from other health facility</b>'")) {
+			echo "FROM OTHER HEALTH FACILITY :  " . $noFromOtherHealthFacility;
+		} else {
+			echo "FROM OTHER HEALTH FACILITY : FAILED";
+		}
 	}
 	public function to_community_unit()
 	{
@@ -318,8 +324,11 @@ class DB
 		while ($row = $result->fetch_assoc()) {
 			$noToCommunityUnit = $row["countToCommunityUnit"];
 		}
-		mysqli_query($con2, "UPDATE `summary_table` SET `$day`='$noToCommunityUnit' WHERE disease_name='<b>Referrals to Community Unit</b>'");
-		echo $noToCommunityUnit;
+		if (mysqli_query($con2, "UPDATE `summary_table` SET `$day`='$noToCommunityUnit' WHERE disease_name='<b>Referrals to Community Unit</b>'")) {
+			echo "TO COMMUNITY UNIT : " . $noToCommunityUnit;
+		} else {
+			echo "TO COMMUNITY UNIT : FAILED";
+		}
 	}
 	public function from_community_unit()
 	{
@@ -329,8 +338,11 @@ class DB
 		while ($row = $result->fetch_assoc()) {
 			$nofromCommunityUnit = $row["countfromCommunityUnit"];
 		}
-		mysqli_query($con2, "UPDATE `summary_table` SET `$day`='$nofromCommunityUnit' WHERE disease_name='<b>Referrals from Community Unit</b>'");
-		echo $nofromCommunityUnit;
+		if (mysqli_query($con2, "UPDATE `summary_table` SET `$day`='$nofromCommunityUnit' WHERE disease_name='<b>Referrals from Community Unit</b>'")) {
+			echo "FROM COMMUNITY UNIT : " . $nofromCommunityUnit;
+		} else {
+			echo "FROM COMMUNITY UNIT : FAILED";
+		}
 	}
 
 
@@ -372,5 +384,18 @@ class DB
 		global $con2;
 		$today = date('j');
 		mysqli_query($con2, "UPDATE `summary_table` SET `$today`='$NoOfliistedDiseases' WHERE disease_name='$eachDisease'");
+	}
+
+
+
+
+
+
+	## Ultimate fix to report
+	function utlimate_fix()
+	{
+		global $con2;
+		$tomorrow = date("j") + 1;
+		mysqli_query($con2, "UPDATE summary_table SET `$tomorrow`='0'");
 	}
 }
