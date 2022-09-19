@@ -1,0 +1,2 @@
+Insert name and medication and temperature reading
+Create a function to delete yesterday's record that have no adm_no

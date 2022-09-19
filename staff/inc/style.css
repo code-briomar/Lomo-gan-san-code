@@ -1,0 +1,25 @@
+body{
+	 background-image: url('bg.jpg');
+	 overflow-x: hidden !important;
+}
+.modal{
+	width: 80% !important;
+}
+.modal-summary{
+	width:  40% !important;
+}
+
+@media print{
+	/*Hide every the element*/
+	.fixed-action-btn{
+		display: none;
+	}
+}
+
+.vertical-center {
+	position: absolute;
+	top: 50%;
+	left: 35%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
