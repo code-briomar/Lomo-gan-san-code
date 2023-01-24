@@ -1,10 +1,5 @@
 <?php
 include_once('inc/class.php');
-$functions = new DB();
-$functions->db_con();
-$con = new mysqli("localhost", "root", "", "san-code");
-$con2 = new mysqli("localhost", "root", "", "test");
-
 #Force cache refresh
 function auto_version($file = '')
 {
@@ -14,6 +9,9 @@ function auto_version($file = '')
 	$mtime = filemtime($file);
 	return $file . '?' . $mtime;
 }
+
+#Connect to the SQlite3 database
+$db = new SQLite3("db/sanCode.db");
 ?>
 <!DOCTYPE html>
 <html>

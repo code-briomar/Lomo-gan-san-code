@@ -181,3 +181,23 @@ $(document).ready(function(){
       });
     });
 });
+
+//Open choose modal when document loads
+$(document).ready(function(){
+  $("#choose").modal();
+  $("#choose").modal('open');
+});
+
+$(document).bind('keypress', function(e){
+   if(e.which === 13) { // return
+      //$('#enter-clicked').trigger('click');
+      $("new_record_form").submit();
+   }
+});
+
+$(document).bind('keypress', function(e){
+  if(e.which === 13) { // return
+     $('#enter-clicked-medication-only').trigger('click');
+  }
+});
+

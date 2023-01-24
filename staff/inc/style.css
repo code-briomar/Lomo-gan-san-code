@@ -3,7 +3,7 @@ body{
 	 overflow-x: hidden !important;
 }
 .modal{
-	width: 80% !important;
+	width: 85% !important;
 }
 .modal-summary{
 	width:  40% !important;
@@ -23,3 +23,4 @@ body{
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
+ 

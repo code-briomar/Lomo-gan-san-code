@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'inc/header.php';
+#include "inc/report_format.php";
 ?>
 
 <body>
@@ -9,17 +10,15 @@ include 'inc/header.php';
 			<div class="center-align">
 				<div class="vertical-center">
 					<div class="row">
-						<div class="col s12 m7">
-							<h2>Lomo-gan San-code</h2>
+						<div class="col s12 m11">
+							<h2>Lomogan's SanCode</h2>
 							<div class="card blue-grey darken-1">
 								<div class="card-content white-text">
-									<span class="card-title">Choose a category : </span>
-									<p style="visibility: hidden;">I am a very simple card. I am good at containing small bits of information.
-										I am convenient because I require little markup to use effectively.</p>
+									<span class="card-title">Pick an option :</span>
 								</div>
 								<div class="card-action">
-									<a href="index" class="btn waves-effect waves-light">Students</a>
-									<a href="staff/index" class="btn waves-effect waves-light">Staff</a>
+									<a href="index.php" class="btn waves-effect waves-light">Students</a>
+									<a href="staff/index.php" class="btn waves-effect waves-light">Staff</a>
 								</div>
 							</div>
 						</div>

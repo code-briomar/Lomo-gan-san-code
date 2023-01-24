@@ -1,0 +1,11 @@
+ 1. Authentication. Ideate the authentication.
+	Which specific health provider opened the student's record and made modifications to them.
+	It will be easier to track that.
+	Provide the project scope. to Duncan.
+	Needs a lot of modifications for sale.
+	Make it a web app to have a dedicated IP Address.
+	Put an API getaway. Plug in an API web application as well as the GUI App.
+	Use APIs to handle the data so that it works as a deskapp, USSD, mobile and any other platform.
+
+2. Define the idea behind the app then put it into chatGPT then break the ideas into modules.
+3. Develop a landing page.

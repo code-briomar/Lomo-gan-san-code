@@ -88,6 +88,78 @@ var instances = M.FloatingActionButton.init(elems, {
 });
 });
 
+function generate() {  
+  var doc = new jsPDF('p', 'pt', 'letter');  
+  var htmlstring = '';  
+  var tempVarToCheckPageHeight = 0;  
+  var pageHeight = 0;  
+  pageHeight = doc.internal.pageSize.height;  
+  specialElementHandlers = {  
+      // element with id of "bypass" - jQuery style selector  
+      '#bypassme': function(element, renderer) {  
+          // true = "handled elsewhere, bypass text extraction"  
+          return true  
+      }  
+  };  
+  margins = {  
+      top: 50,  
+      bottom: 60,  
+      left: 40,  
+      right: 40,  
+      width: 60  
+  };  
+  var y = 20;  
+  doc.setLineWidth(2);  
+
+  //This month's values
+  month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const d = new Date();
+  let name = month[d.getMonth()];
+
+  doc.text(200, y = y + 30, "Summary Data ( Month : "+name+" )");  
+  doc.autoTable({  
+      html: '#printable_table',  
+      startY: 70,  
+      theme: 'grid',  
+      columnStyles: {  
+          0: {  
+              cellWidth: 15,
+              cellPadding: 5,
+          },  
+          1: {  
+              cellWidth: 65,  
+          },  
+          2: {  
+              cellWidth: 65,  
+          },
+          3: {  
+            cellWidth: 65,  
+          },  
+          4: {  
+              cellWidth: 65,  
+          },  
+          5: {  
+              cellWidth: 65,  
+          },
+          6: {  
+            cellWidth: 65,  
+          },  
+          7: {  
+              cellWidth: 65,  
+          },  
+          8: {  
+              cellWidth: 65,      
+          }
+            }, 
+
+          styles: {  
+              minCellHeight: 40,
+              maxCellHeight: 10  
+          } 
+  });
+  doc.save('summary_data.pdf');  
+}  
+
 $(document).ready(function(){
   $('.modal').modal();
 });
@@ -98,4 +170,26 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('.tooltipped').tooltip();
+});
+
+//Filter table data
+$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+});
+
+//Open choose modal when document loads
+$(document).ready(function(){
+  $("#choose").modal();
+  $("#choose").modal('open');
+});
+
+$(document).bind('keypress', function(e){
+  if(e.which === 13) { // return
+     $('#enter-clicked').trigger('click');
+  }
 });

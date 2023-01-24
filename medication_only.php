@@ -1,25 +1,17 @@
 <?php
 session_start();
 include 'inc/header.php';
-
-#Insert new temperature reading into database
 if (isset($_GET["temp"])) {
-	if ($_GET["temp"] != null) {
-		$temp = mysqli_escape_string($con, $_GET["temp"]);
-		$functions->update_medication_only($_SESSION["adm_no"], $temp);
-		#Redirect back to home page
-		header("Location:./index");
-	}
+	include "get_records_by_adm_no.php";
 }
-
 ?>
 <div class="container">
 	<div class="row">
 		<form class="col s7 push-s3" onSubmit={formSubmit}>
-			<h2>Lomo-gan San-code</h2>
-			<div class="chip">Medication Only</div>
+			<h2>Lomogan's SanCode</h2>
+			<div class="chip">Give <?php echo $_SESSION["fname"] ?> medication only</div>
 			<div class="row right">
-				<button class="btn orange" name="go_back" onclick="window.location='./index'"><i class=" material-icons">
+				<button class="btn orange" name="go_back" onclick="window.location='index.php?#choose'"><i class=" material-icons">
 						arrow_back_ios_new</i><span class="flow-text">Go back</span></button>
 			</div>
 			<div class="card blue-grey darken-1">
@@ -36,8 +28,8 @@ if (isset($_GET["temp"])) {
 						<?php endif ?>
 					</div>
 					<div class="col s12 push-s3">
-						<?php if (!empty($_SESSION["comment"])) : ?>
-							<small class="chip"><?php echo "<b>" . $_SESSION["fname"] . "</b>'s complains' : <b>" . $_SESSION["comment"] . "</b>" ?></small>
+						<?php if (!empty($_SESSION["complain"])) : ?>
+							<small class="chip"><?php echo "<b>" . $_SESSION["fname"] . "</b>'s complains are : <b>" . $_SESSION["complain"] . "</b>" ?></small>
 						<?php else : ?>
 							<small class="chip">No previous complains for <?php echo $_SESSION["fname"] ?></small>
 						<?php endif ?>
@@ -59,7 +51,7 @@ if (isset($_GET["temp"])) {
 				</div>
 				<div class="row center">
 					<div class="input-field col s12">
-						<button type="submit" class="btn waves-effect waves-dark light-blue darken-1">submit</button>
+						<button type="submit" id="#enter-clicked-medication-only" class="btn waves-effect waves-dark light-blue darken-1">submit</button>
 					</div>
 				</div>
 			</div>
